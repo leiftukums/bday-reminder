@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { v4 as uuidv4 } from 'uuid';
+import './sass.scss';
 
 
 const FriendList = () => {
   const [friendList, setFriendList] = useState([]);
   const [friendInput, setFriendInput] = useState('');
-  // const [friendBirthday, setFriendBirthday] = useState([]);
   const [birthdayInput, setBirthdayInput] = useState('');
+  const [giftInput, setGiftInput] = useState('');
   const id = uuidv4();
 
   const addFriend = event => {
@@ -17,11 +18,13 @@ const FriendList = () => {
       {
         id: id,
         name: friendInput,
-        birthday: birthdayInput
+        birthday: birthdayInput,
+        gift: giftInput
       }
     ]);
     setFriendInput('');
-    setBirthdayInput('')
+    setBirthdayInput('');
+    setGiftInput('')
   }
 
   const deleteFriend = (id) => {
@@ -38,8 +41,11 @@ const FriendList = () => {
         <p>You've got {friendList.length} upcoming birthdays:</p>
         <ul>
           {friendList.map(friend => (
-            <li key={friend.id}>{friend.name}'s birthday is {friend.birthday}
-            <button onClick={() => deleteFriend(friend.id)}>Remove</button>
+            <li key={friend.id}>{friend.name}'s birthday is {friend.birthday} 
+            <button 
+                onClick={() => deleteFriend(friend.id)}
+                className='button'
+                >Remove</button>
             </li>
           ))}
         </ul>
@@ -59,7 +65,16 @@ const FriendList = () => {
           onChange={e => setBirthdayInput(e.target.value)}
           placeholder='Add friends birthday'
         />
-        <button 
+        <textarea
+          className='text-area'
+          name='gift'
+          type='text'
+          value={giftInput}
+          onChange={e => setGiftInput(e.target.value)}
+          placeholder='Got an idea for a gift?'
+        />
+        <button
+          className='button'
           type='button' 
           value='button' 
           onClick={addFriend}
