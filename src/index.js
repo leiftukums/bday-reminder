@@ -37,6 +37,7 @@ const FriendList = () => {
       <div className='header'>
         <h1>Never forget a birthday again!</h1>
       </div> 
+      <p>Upcoming birthdays: </p>
       <div className='friendlist'>
         <p>You've got {friendList.length} upcoming birthdays:</p>
         <ul>
